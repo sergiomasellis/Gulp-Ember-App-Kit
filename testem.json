@@ -1,0 +1,20 @@
+{
+  "framework": "qunit",
+  "test_page": "build/tests.html",
+  "routes": {
+    "/tests/tests.js": "build/tests/tests.js",
+    "/assets/app.js": "build/assets/js/app.js",
+    "/assets/templates.js": "build/assets/js/templates.js"
+  },
+  "serve_files": [
+    "coverage/**/*.js"
+  ],
+  "src_files": [
+    "build/**/*.js"
+  ],
+  "before_tests": "istanbul instrument --output coverage build",
+  "on_exit": "istanbul report",
+  "test_page": "build/tests.html",
+  "launch_in_dev": ["PhantomJS", "Chrome"],
+  "launch_in_ci": ["PhantomJS"]
+}

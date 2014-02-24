@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>App</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+	<script src="assets/vendor/jquery/jquery.js"></script>
+
+<!-- 	// <script src="assets/vendor/handlebars/handlebars.js"></script>
+	// <script src="assets/vendor/ember/ember.js"></script> -->
+
+	<script src="assets/vendor/handlebars/handlebars.runtime.js"></script>
+	<script src="assets/vendor/ember/ember.js"></script>
+
+	<script src="assets/vendor/ember-data/ember-data.js"></script>
+	<script src="assets/vendor/loader.js"></script>
+	<script src="assets/vendor/ember-resolver/dist/ember-resolver.js"></script>
+	<script src="assets/vendor/ic-ajax/main.js"></script>
+
+
+	<script src="assets/js/app.js"></script>
+	<script src="assets/js/templates.js"></script>
+
+	<link rel="stylesheet" href="assets/vendor/qunit/qunit/qunit.css">
+  	<script src="assets/vendor/qunit/qunit/qunit.js"></script>
+
+</head>
+<body>
+
+	<div id="qunit"></div>
+	<div id="qunit-fixture"></div>
+	<script src="/tests/tests.js"></script>
+	<script src="/tests/test_helper.js"></script>
+	<script src="/tests/test_loader.js"></script>
+	<script src="/testem.js"></script>
+
+	<script>
+	Testem.on('all-test-results', function(results){
+	  var xhr = new XMLHttpRequest()
+	  xhr.open('POST', 'http://localhost:7358/')
+	  xhr.send(JSON.stringify(window.__coverage__))
+	})
+	</script>
+
+	<script src="../coverage/assets/js/app.js"></script>
+
+</body>
+</html>
