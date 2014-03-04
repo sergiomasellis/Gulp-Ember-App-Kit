@@ -17,6 +17,7 @@ var gulp = require('gulp'),
     plumber = require('gulp-plumber'),
     gutil = require("gulp-util"),
     testem = require('gulp-testem'),
+    preprocess = require('gulp-preprocess'),
     http = require('http'),
     server = require('tiny-lr')(),
     connect = require("connect"),
@@ -31,6 +32,9 @@ var gulp = require('gulp'),
 
 var log = gutil.log,
     colors = gutil.colors;
+
+// production env
+    process.env.NODE_ENV = "dev";
 
 // Clean old files in the build folder
 gulp.task('clean', function () {
@@ -139,12 +143,11 @@ gulp.task('copy', function () {
     gulp.src('vendor/**/**')
         .pipe(gulp.dest('build/assets/vendor/'));
 
-    gulp.src('app/*.html')
-        .pipe(gulp.dest('build'));
 
-    // gulp.src("build/assets/js/**/**/*.js")
-    //     .pipe(inject('build/tests.html'))
-    //     .pipe(gulp.dest("build"));
+
+    gulp.src('app/*.html')
+        .pipe(preprocess())
+        .pipe(gulp.dest('build'));
 });
 
 

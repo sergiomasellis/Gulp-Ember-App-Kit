@@ -1,6 +1,6 @@
 {
   "author": "Sergio Masellis",
-  "name": "Gulp Ember App Kit",
+  "name": "",
   "version": "0.0.1",
   "homepage": "",
   "licenses": {
@@ -12,7 +12,9 @@
     "type": "",
     "url": ""
   },
-  "dependencies": {},
+  "dependencies": {
+    "gulp-preprocess": "^1.0.1"
+  },
   "devDependencies": {
     "connect": "~2.13.0",
     "open": "~0.0.4",
@@ -27,7 +29,7 @@
     "underscore": "~1.6.0",
     "event-stream": "~3.1.0",
     "xtend": "~2.1.2",
-    "gulp": "~3.5.2",
+    "gulp": "^3.5.5",
     "gulp-uglify": "~0.2.1",
     "gulp-jshint": "~1.4.2",
     "gulp-concat": "~2.1.7",
@@ -39,6 +41,6 @@
     "gulp-qunit": "~0.2.0",
     "gulp-ember-handlebars": "sargentsurg/gulp-handlebars",
     "gulp-es6-module-transpiler": "sargentsurg/gulp-es6-module-transpiler",
-    "gulp-testem":"sargentsurg/gulp-testem"
+    "gulp-testem": "sargentsurg/gulp-testem"
   }
 }

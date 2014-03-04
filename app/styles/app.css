@@ -1,0 +1,101 @@
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+html {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    color: #fff;
+}
+
+body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    font-family: Helvetica, sans-serif;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-perspective: 0;
+    perspective: 0;
+    overflow: hidden;
+	background-color: #1c1e21;
+}
+
+.container, .container-surface, .group {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    overflow: visible;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    pointer-events: none;
+}
+
+.group {
+    width: 0px;
+    height: 0px;
+}
+
+.surface {
+    position: absolute;
+    -webkit-transform-origin: center center;
+    transform-origin: center center;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    pointer-events: auto;
+}
+
+.menu{
+	width: 100%;
+}
+
+.menu ul{
+	position: relative;
+	background-color: #1c1e21;
+	margin: 0;
+	padding: 0;
+	left: -90%;
+	-webkit-transition: all 1s ease-in-out;
+	-moz-transition: all 1s ease-in-out;
+	-o-transition: all 1s ease-in-out;
+	transition: all 1s ease-in-out;
+}
+
+.menu ul:hover{
+	position: relative;
+	left: 0%;
+	background-color: #2f302f;
+}
+
+.menu ul li{
+	list-style: none;
+	background-color: #434443;
+	padding: 12px;
+	margin-bottom: 3px;
+	-webkit-transition: all 1s ease-in-out;
+	-moz-transition: all 1s ease-in-out;
+	-o-transition: all 1s ease-in-out;
+	transition: all 1s ease-in-out;
+	position: relative;
+	left: -5%;
+}
+
+.menu ul li:hover{
+	position: relative;
+	left: 0%;
+	background-color: #2f302f;
+}

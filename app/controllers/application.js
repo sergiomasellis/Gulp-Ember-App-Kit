@@ -1,2 +1,1 @@
-var ApplicationController = Ember.ObjectController.extend();
-export default ApplicationController;
+export default Ember.Controller.extend();
