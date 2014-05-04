@@ -7,9 +7,7 @@
     "Ember": true,
     "Em": true,
     "DS": true,
-    "$": true,
-    "history": true,
-    "console": true
+    "$": true
   },
   "node" : false,
   "browser" : false,

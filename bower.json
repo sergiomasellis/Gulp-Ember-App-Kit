@@ -1,16 +1,16 @@
 {
-  "name": "ember-app-kit",
+  "name": "gulp-ember-app-kit",
   "dependencies": {
     "handlebars": "~1.1.2",
-    "jquery": "~1.10.2",
+    "jquery": "~1.9.1",
     "qunit": "~1.12.0",
-    "ember": "~1.4.0-beta.2",
-    "ember-data": "~1.0.0-beta.6",
+    "ember-qunit": "https://github.com/rpflorence/ember-qunit.git#master",
+    "ember": "~1.5.0",
+    "ember-data": "~1.0.0-beta.7",
     "ember-resolver": "git://github.com/stefanpenner/ember-jj-abrams-resolver.git#master",
-    "ic-ajax": "~0.3.0",
-    "ember-testing-httpRespond": "~0.1.1"
-  },
-  "resolutions": {
-    "ember": "~1.4.0-beta.2"
+    "ic-ajax": "~1.0.4",
+    "ember-testing-httpRespond": "~0.1.1",
+    "loader.js": "git://github.com/stefanpenner/loader.js",
+    "ember-load-initializers": "git://github.com/stefanpenner/ember-load-initializers.git#0.0.1"
   }
 }

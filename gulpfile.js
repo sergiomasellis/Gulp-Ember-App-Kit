@@ -33,7 +33,7 @@ var gulp = require('gulp'),
 var log = gutil.log,
     colors = gutil.colors;
 
-// production env
+// production env options: "dev" "test" "prod"
     process.env.NODE_ENV = "dev";
 
 // Clean old files in the build folder
@@ -65,7 +65,8 @@ gulp.task('scripts', function () {
     gulp.src("app/**/**/*.js")
         .pipe(plumber())
         .pipe(es6ModuleTranspiler({
-            type: "amd"
+            type: "amd",
+            namespace: "appkit"
         }))
         .pipe(uglify())
         .pipe(concat('app.js'))
