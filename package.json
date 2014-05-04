@@ -46,6 +46,7 @@
     "gulp-util": "~2.2.14",
     "gulp-plumber": "~0.6.1",
     "gulp-multinject": "~0.1.0",
+    "gulp-concat-sourcemap": "~1.2.2",
     "gulp-qunit": "~0.3.3",
     "gulp-ember-handlebars": "sargentsurg/gulp-handlebars",
     "gulp-es6-module-transpiler": "sargentsurg/gulp-es6-module-transpiler",
