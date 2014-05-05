@@ -1,19 +1,14 @@
-//Router Index Test
+import { test, moduleFor } from 'ember-qunit';
+
+
 import Index from 'appkit/routes/index';
 
-var route;
-module("Unit - IndexRoute", {
-  setup: function(){
-    var container = isolatedContainer([
-      'route:index'
-    ]);
+moduleFor('route:index', "Unit - IndexRoute");
 
-    route = container.lookup('route:index');
-  }
+test("it exists", function(){
+  ok(this.subject() instanceof Index);
 });
 
-// test("it exists", function(){
-//   ok(route);
-//   ok(route instanceof Index);
-// });
-
+test("#model", function(){
+  deepEqual(this.subject().model(), ['red', 'yellow', 'blue']);
+});

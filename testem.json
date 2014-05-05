@@ -1,6 +1,7 @@
 {
+  "parallel": 2,
   "framework": "qunit",
-  "test_page": "build/tests.html",
+  "test_page": "build/index.html",
   "routes": {
     "/tests/tests.js": "build/tests/tests.js",
     "/assets/app.js": "build/assets/js/app.js",
@@ -14,7 +15,7 @@
   ],
   "before_tests": "istanbul instrument --output coverage build",
   "on_exit": "istanbul report",
-  "test_page": "build/tests.html",
+  "test_page": "build/index.html",
   "launch_in_dev": ["PhantomJS", "Chrome"],
   "launch_in_ci": ["PhantomJS"]
 }
