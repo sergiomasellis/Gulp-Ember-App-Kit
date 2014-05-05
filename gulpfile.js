@@ -169,7 +169,7 @@ gulp.task('lr-server', function() {
 // Deploy code to ./IOS Folder use: "gulp deploy"
 gulp.task('deploy', function() {
   gulp.src('build/**')
-    .pipe(gulp.dest('../../IOS/trunk/www/'));
+    .pipe(gulp.dest('dist/'));
 });
 
 gulp.task('testem', ['coverage'], function() {
@@ -210,6 +210,9 @@ gulp.task('servers', function(callback) {
 
   devApp = connect()
     .use(connect.static('build'));
+
+    var expressServer = require('./api-stub/routes.js');
+    expressServer(log, colors);
 
   // change port and hostname to something static if you prefer
   devServer = http.createServer(devApp).listen(8000 /*, hostname*/ );

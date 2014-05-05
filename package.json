@@ -15,7 +15,6 @@
   "scripts": {
     "start": "gulp",
     "build": "gulp build",
-    "test": "grunt testem",
     "postinstall": "bower install"
   },
   "dependencies": {
