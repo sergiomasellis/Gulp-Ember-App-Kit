@@ -87,7 +87,7 @@ gulp.task('templates', function() {
     .pipe(plumber())
     .pipe(handlebars({
       outputType: "amd",
-      templateRoot: "appkit"
+      namespace: "appkit"
     }))
     .pipe(concat('templates.js'))
     .pipe(gulp.dest('build/assets/js'))
