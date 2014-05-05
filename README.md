@@ -1,4 +1,7 @@
 Gulp-Ember-App-Kit
+
+# Gulp Ember App Kit [![Build Status](https://travis-ci.org/sargentsurg/Gulp-Ember-App-Kit.png?branch=master)](https://travis-ci.org/sargentsurg/Gulp-Ember-App-Kit)
+
 ==================
 
 Ember App Kit using Gulp
