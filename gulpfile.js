@@ -197,15 +197,17 @@ gulp.task('coverage', function() {
   //   resp.end()
   // });
 
-  var port = 3000;
+  // var port = 3000;
   // coverageServer.listen(port);
 
+
+// added coverage to api-stub server
   var expressServer = require('./api-stub/routes.js');
   expressServer(log, gutil.colors);
 
   log('');
   log(colors.gray("-----------------------------------"));
-  log("Listening on port: " + colors.yellow(port));
+  log("Listening on port: " + colors.yellow(3000));
   log(colors.gray("-----------------------------------"));
   log('');
 

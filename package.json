@@ -15,6 +15,7 @@
   "scripts": {
     "start": "gulp",
     "build": "gulp build",
+    "test": "gulp testem",
     "postinstall": "bower install"
   },
   "dependencies": {
