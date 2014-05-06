@@ -25,12 +25,12 @@ module.exports = function(log, colors) {
         var accounts = {
             "user": [{
                 "id": 1,
-                "email": "sergio@barclays.com",
+                "email": "sergio@domain.com",
                 "password": "abc123"
             },
             {
                 "id": 2,
-                "email": "devon@barclays.com",
+                "email": "devon@domain.com",
                 "password": "abc45"
             }
             ]
