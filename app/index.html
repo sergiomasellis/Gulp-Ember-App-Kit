@@ -77,7 +77,7 @@
 
   Testem.on('all-test-results', function(results){
       var xhr = new XMLHttpRequest()
-      xhr.open('POST', 'http://localhost:7358/')
+      xhr.open('POST', 'http://localhost:3000/coverage')
       xhr.send(JSON.stringify(window.__coverage__))
   })
   </script>

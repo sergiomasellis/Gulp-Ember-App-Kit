@@ -34,7 +34,7 @@ var log = gutil.log,
   colors = gutil.colors;
 
 // production env options: "dev" "test" "prod"
-// process.env.NODE_ENV = "test";
+process.env.NODE_ENV = "test";
 
 // Clean old files in the build folder
 gulp.task('clean', function() {
@@ -192,13 +192,16 @@ fs.readFile(file, 'utf8', function (err, data) {
 
 gulp.task('coverage', function() {
 
-  var coverageServer = http.createServer(function(req, resp) {
-    req.pipe(fs.createWriteStream('coverage.json'))
-    resp.end()
-  });
+  // var coverageServer = http.createServer(function(req, resp) {
+  //   req.pipe(fs.createWriteStream('coverage.json'))
+  //   resp.end()
+  // });
 
-  var port = 7358;
-  coverageServer.listen(port);
+  var port = 3000;
+  // coverageServer.listen(port);
+
+  var expressServer = require('./api-stub/routes.js');
+  expressServer(log, gutil.colors);
 
   log('');
   log(colors.gray("-----------------------------------"));
@@ -287,7 +290,7 @@ gulp.task('build', ['scripts', 'test', 'copy', 'templates'], function() {
 });
 
 gulp.task('setEnv',function(){
-  console.log(gulp.env.Env);
+  // console.log(gulp.env.Env);
   if(!gulp.env.Env) gulp.env.Env = "dev";
   process.env.NODE_ENV = gulp.env.Env;
 

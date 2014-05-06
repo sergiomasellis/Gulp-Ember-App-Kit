@@ -1,5 +1,6 @@
 module.exports = function(log, colors) {
     var express = require('express');
+    var fs = require('fs');
     var expressServer = express();
 
     expressServer.use(function (req, res, next) {
@@ -37,6 +38,13 @@ module.exports = function(log, colors) {
         };
         res.send(accounts);
     });
+
+    expressServer.post('/coverage', function(req, res){
+      req.pipe(fs.createWriteStream('./coverage.json'))
+      res.send('hello world');
+      res.end()
+    });
+
 
     expressServer.listen(3000);
 
