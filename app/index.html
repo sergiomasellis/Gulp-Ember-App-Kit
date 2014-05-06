@@ -60,6 +60,12 @@
 	</script>
   <!-- @endif -->
 
+  <!-- @if NODE_ENV='prod' -->
+  <script>
+    window.App = require('appkit/app')["default"].create();
+  </script>
+  <!-- @endif -->
+
   <!-- @if NODE_ENV='test' -->
   <div id="qunit"></div>
   <div id="qunit-fixture"></div>
