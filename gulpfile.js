@@ -16,7 +16,7 @@ var gulp = require('gulp'),
   refresh = require('gulp-livereload'),
   plumber = require('gulp-plumber'),
   gutil = require("gulp-util"),
-  testem = require('gulp-testem'),
+  testem = require('testem'),
   preprocess = require('gulp-preprocess'),
   http = require('http'),
   server = require('tiny-lr')(),
@@ -34,7 +34,7 @@ var log = gutil.log,
   colors = gutil.colors;
 
 // production env options: "dev" "test" "prod"
-process.env.NODE_ENV = "test";
+// process.env.NODE_ENV = "test";
 
 // Clean old files in the build folder
 gulp.task('clean', function() {
@@ -174,16 +174,25 @@ gulp.task('deploy', function() {
 });
 
 gulp.task('testem', ['coverage'], function() {
-  gulp.src([''])
-    .pipe(testem({
-      configFile: 'testem.json'
-    }));
+
+var file = __dirname + '/testem.json';
+
+fs.readFile(file, 'utf8', function (err, data) {
+
+  data = JSON.parse(data);
+  var api = new testem();
+  api.startDev(data);
+
+  // console.dir(data);
+});
+
+
+
 });
 
 gulp.task('coverage', function() {
 
   var coverageServer = http.createServer(function(req, resp) {
-    console.log(req, resp);
     req.pipe(fs.createWriteStream('coverage.json'))
     resp.end()
   });
@@ -277,9 +286,21 @@ gulp.task('build', ['scripts', 'test', 'copy', 'templates'], function() {
   log('');
 });
 
+gulp.task('setEnv',function(){
+  console.log(gulp.env.Env);
+  if(!gulp.env.Env) gulp.env.Env = "dev";
+  process.env.NODE_ENV = gulp.env.Env;
+
+  log('');
+  log(colors.gray("-----------------------------------"));
+  log("Envoriment: " + colors.green(gulp.env.Env));
+  log(colors.gray("-----------------------------------"));
+  log('');
+});
+
 
 // The default task (called when you run `gulp`)
-gulp.task('default', ['lr-server', 'test', 'scripts', 'copy', 'templates', 'servers', 'watch'], function() {
+gulp.task('default', ['setEnv','lr-server', 'test', 'scripts', 'copy', 'templates', 'servers', 'watch'], function() {
 
   log('');
   log(colors.gray("-----------------------------------"));

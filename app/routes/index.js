@@ -1,5 +1,5 @@
 export default Ember.Route.extend({
-	model: function(attribute){
+	model: function(){
 		return ['red', 'yellow', 'blue'];
 	}
 });

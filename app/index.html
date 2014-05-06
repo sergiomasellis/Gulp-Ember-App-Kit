@@ -36,7 +36,6 @@
 	<script src="assets/vendor/ember-data/ember-data.js"></script>
   <script src="assets/vendor/loader.js/loader.js"></script>
   <script src="assets/vendor/ember-resolver/dist/ember-resolver.js"></script>
-  <script src="assets/vendor/ember-shim.js"></script>
   <script src="assets/vendor/ic-ajax/dist/named-amd/main.js"></script>
   <script src="assets/vendor/ember-load-initializers/ember-load-initializers.js"></script>
 
@@ -65,20 +64,21 @@
   <div id="qunit"></div>
   <div id="qunit-fixture"></div>
   <script src="/tests/tests.js"></script>
-  <script src="/tests/test_helper.js"></script>
-  <script src="/tests/test_loader.js"></script>
+  <script src="/tests/test-helper.js"></script>
+  <script src="/tests/test-loader.js"></script>
   <script src="/testem.js"></script>
-
   <script>
+
   Testem.on('all-test-results', function(results){
-    var xhr = new XMLHttpRequest()
-    xhr.open('POST', 'http://localhost:7358/')
-    xhr.send(JSON.stringify(window.__coverage__))
+      var xhr = new XMLHttpRequest()
+      xhr.open('POST', 'http://localhost:7358/')
+      xhr.send(JSON.stringify(window.__coverage__))
   })
   </script>
 
   <script src="../coverage/assets/js/app.js"></script>
   <!-- @endif -->
+
 
 </body>
 </html>
