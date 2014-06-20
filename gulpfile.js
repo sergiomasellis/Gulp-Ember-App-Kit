@@ -11,7 +11,7 @@ var gulp = require('gulp'),
   handlebars = require('gulp-handlebars'),
   jshint = require('gulp-jshint'),
   es6ModuleTranspiler = require("gulp-es6-module-transpiler"),
-  concat = require('gulp-concat-sourcemap'),
+  concat = require('gulp-concat'),
   clean = require('gulp-clean'),
   refresh = require('gulp-livereload'),
   plumber = require('gulp-plumber'),
@@ -28,13 +28,14 @@ var gulp = require('gulp'),
   open = require('open'),
   qunit = require('gulp-qunit'),
   _ = require('underscore'),
-  path = require('path');
+  path = require('path'),
+  replace = require('gulp-replace');
 
 var log = gutil.log,
   colors = gutil.colors;
 
 // production env options: "dev" "test" "prod"
-process.env.NODE_ENV = "test";
+process.env.NODE_ENV = "dev";
 
 // Clean old files in the build folder
 gulp.task('clean', function() {
@@ -145,10 +146,8 @@ gulp.task('copy', function() {
   gulp.src('vendor/**/**')
     .pipe(gulp.dest('build/assets/vendor/'));
 
-
-
   gulp.src('app/*.html')
-    .pipe(preprocess())
+    .pipe(preprocess({context: {ENV: JSON.stringify(require("./config/environment")(process.env.NODE_ENV))}}))
     .pipe(gulp.dest('build'));
 });
 
