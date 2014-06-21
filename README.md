@@ -1,11 +1,29 @@
 # Gulp Ember App Kit [![Build Status](https://travis-ci.org/sargentsurg/Gulp-Ember-App-Kit.png?branch=master)](https://travis-ci.org/sargentsurg/Gulp-Ember-App-Kit)
 
-Ember App Kit using Gulp
+Ember App Kit using Gulp (based off EAK and Ember-cli)
 
-  To get Started go to your terminal and run: "npm install" or "sudo npm install" (in some cases)
+## Prerequisites
 
-  next run gulp to compile your project: "gulp"
+- Node [Install](http://nodejs.org/download/)
+- Gulp `npm install -g gulp-cli`
 
-  Finally go to "http://localhost:8000/"
+## Instalation
 
-  you should be able to mouse over 3 links that animate on mouse over.
+- Download Gulp Ember app kit or use Git.
+- Got to the downloaded folder in command promt or Terminal
+- Type `npm install`
+- If everything was setup correctly you can now run `gulp`
+- Finally go to "http://localhost:8000/"
+
+## Config
+- For basic changes to your app environment go to `config/environments.js`
+
+## Basic Commands
+- `gulp` This is the default task it "transpiles" your ember app then serves it from the `./build/` dirrectory. It even starts a live reload server to make it easy to get started.
+- `gulp clean` Some times you just want a fresh start this deletes the build folder.
+- `gulp build` This task will build your project and place it in the build directory.
+- `gulp testem` This is a little command to run the testem ci module. The test can be configured on the `testem.json` file. 
+- `gulp converage` Test converage using [istanbul](https://github.com/gotwarlost/istanbul) and testem. Setup with Qunit.
+
+## API Stub
+A small [express](http://expressjs.com/4x/api.html) stub server is included for you to use this server is run on port 3000.
