@@ -179,7 +179,7 @@ gulp.task('testem', ['build', 'copy-tests'], function () {
 
         data = JSON.parse(data);
         var api = new testem();
-        return api.startDev(data);
+        return api.startCI(data);
 
         // console.dir(data);
     });

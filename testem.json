@@ -8,8 +8,6 @@
   "src_files": [
     "build/**/*.js"
   ],
-  "before_tests": "istanbul instrument --output coverage build",
-  "on_exit": "istanbul report",
   "launch_in_dev": ["PhantomJS", "Chrome"],
   "launch_in_ci": ["PhantomJS"]
 }
