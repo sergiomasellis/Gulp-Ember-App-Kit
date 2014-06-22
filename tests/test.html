@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Appkit Tests</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <base href="/" />
+
+    <script src="build/assets/vendor/jquery/dist/jquery.js"></script>
+    <script src="build/assets/vendor/handlebars/handlebars.js"></script>
+    <script src="build/assets/vendor/ember/ember.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="build/assets/vendor/qunit/qunit/qunit.css">
+    <!-- <script src="build/assets/vendor/ember-qunit/dist/named-amd/main.js"></script> -->
+
+    <style>
+      #ember-testing-container {
+        position: absolute;
+        background: white;
+        bottom: 0;
+        right: 0;
+        width: 640px;
+        height: 384px;
+        overflow: auto;
+        z-index: 9999;
+        border: 1px solid #ccc;
+      }
+      #ember-testing {
+        zoom: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+
+    <script>
+      window.AppkitENV = {"environment":"development","baseURL":"/","locationType":"auto","EmberENV":{"FEATURES":{}},"APP":{"LOG_RESOLVER":true,"LOG_ACTIVE_GENERATION":true,"LOG_MODULE_RESOLVER":true,"LOG_VIEW_LOOKUPS":true},"LOG_MODULE_RESOLVER":true};
+      window.EmberENV = window.AppkitENV.EmberENV;
+    </script>
+
+    <script src="build/assets/vendor/qunit/qunit/qunit.js"></script>
+    <script src="build/assets/vendor/qunit-notifications/index.js"></script>
+
+
+    <!-- <script src="build/assets/vendor/vendor.js"></script> -->
+    <script src="build/assets/vendor/loader/loader.js"></script>
+    <script src="build/assets/vendor/jquery/dist/jquery.js"></script>
+    <script src="build/assets/vendor/handlebars/handlebars.js"></script>
+    <script src="build/assets/vendor/ember/ember.js"></script>
+    <script src="build/assets/vendor/ember-cli-shims/app-shims.js"></script>
+    <script src="build/assets/vendor/ember-resolver/dist/ember-resolver.js"></script>
+    <script src="build/assets/vendor/ember-load-initializers/ember-load-initializers.js"></script>
+    <script src="build/assets/vendor/ic-ajax/dist/named-amd/main.js"></script>
+    <script src="build/assets/vendor/ember-data/ember-data.js"></script>
+    <script src="build/assets/vendor/ember-qunit/dist/named-amd/main.js"></script>
+    <script src="build/assets/vendor/qunit-shim.js"></script>
+
+    <script src="build/assets/js/app.js"></script>
+    <script src="build/assets/js/templates.js"></script>
+
+    <script src="build/tests/tests.js"></script>
+
+    <script src="/testem.js"></script>
+    <script>
+      require('appkit/tests/test-helper');
+    </script>
+    <script src="/tests/test-loader.js"></script>
+
+
+      <!-- TEST COVERAGE -->
+      <script>
+      Testem.on('all-test-results', function(results){
+          var xhr = new XMLHttpRequest()
+          xhr.open('POST', 'http://localhost:3000/coverage')
+          xhr.send(JSON.stringify(window.__coverage__))
+      })
+    </script>
+
+    <script src="../coverage/assets/js/app.js"></script>
+
+  </body>
+</html>
+

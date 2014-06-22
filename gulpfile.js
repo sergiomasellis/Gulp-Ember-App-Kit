@@ -31,7 +31,7 @@ var log = gutil.log,
     colors = gutil.colors;
 
 // production env options: "dev" "test" "prod"
-process.env.NODE_ENV = "dev";
+process.env.NODE_ENV = "test";
 
 // Clean old files in the build folder
 gulp.task('clean', function () {
@@ -42,7 +42,7 @@ gulp.task('clean', function () {
     log(colors.gray("-----------------------------------"));
     log('');
 
-    gulp.src(['build', 'coverage', 'coverage.json'], {
+   return gulp.src(['build', 'coverage', 'coverage.json'], {
             read: false
         })
         .pipe(clean({
@@ -103,19 +103,6 @@ gulp.task('jshint', function () {
     gulp.src(['app/**/*.js'])
         .pipe(jshint('.jshintrc'))
         .pipe(jshint.reporter('jshint-stylish'));
-
-    // Test
-    gulp.src("tests/**/**/*.js")
-        .pipe(plumber())
-        .pipe(es6ModuleTranspiler({
-            type: "amd",
-            namespace: "appkit/tests"
-        }))
-        .pipe(concat('tests.js'))
-        .pipe(gulp.dest("build/tests/"));
-
-    gulp.src("test/*.js")
-        .pipe(gulp.dest("build/tests/"));
 });
 
 
@@ -129,8 +116,7 @@ gulp.task('copy', function () {
     log('');
 
     gulp.src('app/img/**')
-        .pipe(gulp.dest('build/assets/img'))
-        .pipe(refresh(server));
+        .pipe(gulp.dest('build/assets/img/'));
 
     gulp.src('app/styles/**')
         .pipe(gulp.dest('build/assets/styles/'))
@@ -167,26 +153,9 @@ gulp.task('livereload', function () {
 
 
 // Deploy code to Folder use: "gulp deploy"
-gulp.task('deploy', function () {
+gulp.task('deploy', ['clean', 'build'],function () {
     gulp.src('build/**')
         .pipe(gulp.dest('dist/'));
-});
-
-gulp.task('testem', ['coverage'], function () {
-
-    var file = __dirname + '/testem.json';
-
-    fs.readFile(file, 'utf8', function (err, data) {
-
-        data = JSON.parse(data);
-        var api = new testem();
-        api.startDev(data);
-
-        // console.dir(data);
-    });
-
-
-
 });
 
 gulp.task('coverage', function () {
@@ -202,6 +171,44 @@ gulp.task('coverage', function () {
     log('');
 
 });
+
+gulp.task('testem', ['build', 'copy-tests'], function () {
+
+    var file = __dirname + '/testem.json';
+    return fs.readFile(file, 'utf8', function (err, data) {
+
+        data = JSON.parse(data);
+        var api = new testem();
+        return api.startDev(data);
+
+        // console.dir(data);
+    });
+});
+
+gulp.task('copy-tests', function(){
+
+    gulp.src('tests/*.html')
+        .pipe(preprocess({
+            context: {
+                ENV: JSON.stringify(require("./config/environment")(process.env.NODE_ENV))
+            }
+        }))
+        .pipe(gulp.dest('build'));
+    
+    // Test
+    gulp.src("tests/**/**/*.js")
+        .pipe(plumber())
+        .pipe(es6ModuleTranspiler({
+            type: "amd",
+            namespace: "appkit/tests"
+        }))
+        .pipe(concat('tests.js'))
+        .pipe(gulp.dest("build/tests/"));
+
+    gulp.src("test/*.js")
+        .pipe(gulp.dest("build/tests/"));
+});
+
 
 //Server
 gulp.task('servers', function (callback) {

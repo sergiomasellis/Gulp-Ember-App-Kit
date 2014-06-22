@@ -13,7 +13,7 @@ module.exports = function(environment) {
     }
   };
 
-  if (environment === 'dev') {
+  if (environment === 'dev' || environment === 'test') {
     // LOG_MODULE_RESOLVER is needed for pre-1.6.0
     ENV.LOG_MODULE_RESOLVER = true;
 

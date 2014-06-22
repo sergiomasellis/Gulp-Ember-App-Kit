@@ -1,6 +1,24 @@
+/* globals requirejs, require */
+
+var moduleName, shouldLoad;
+
+QUnit.config.urlConfig.push({ id: 'nojshint', label: 'Disable JSHint'});
+
 // TODO: load based on params
-Ember.keys(requirejs.entries).forEach(function(entry) {
-  if ((/\-test/).test(entry)) {
-    require(entry, null, null, true);
-  }
-});
+for (moduleName in requirejs.entries) {
+  shouldLoad = false;
+
+  if (moduleName.match(/-test$/)) { shouldLoad = true; }
+  if (!QUnit.urlParams.nojshint && moduleName.match(/\.jshint$/)) { shouldLoad = true; }
+
+  if (shouldLoad) { require(moduleName); }
+};
+
+if (QUnit.notifications) {
+  QUnit.notifications({
+    icons: {
+      passed: '/assets/passed.png',
+      failed: '/assets/failed.png'
+    }
+  });
+}
