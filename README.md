@@ -8,7 +8,7 @@ Ember App Kit using Gulp (based off EAK and Ember-cli)
 - Gulp `npm install -g gulp-cli`
 - Istanbul `npm install -g istanbul` used for test coverage
 
-## Instalation
+## Installation
 
 - Download Gulp Ember app kit or use Git.
 - Got to the downloaded folder in command promt or Terminal
