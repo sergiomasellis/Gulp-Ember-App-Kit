@@ -11,7 +11,7 @@ Ember App Kit using Gulp (based off EAK and Ember-cli)
 ## Installation
 
 - Download Gulp Ember app kit or use Git.
-- Got to the downloaded folder in command promt or Terminal
+- Go to the downloaded folder in your command prompt or Terminal (osx)
 - Type `npm install`
 - If everything was setup correctly you can now run `gulp`
 - Finally go to "http://localhost:8000/"
