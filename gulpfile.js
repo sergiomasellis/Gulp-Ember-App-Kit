@@ -31,7 +31,7 @@ var log = gutil.log,
     colors = gutil.colors;
 
 // production env options: "dev" "test" "prod"
-process.env.NODE_ENV = "test";
+process.env.NODE_ENV = "dev";
 
 // Clean old files in the build folder
 gulp.task('clean', function () {
@@ -194,7 +194,7 @@ gulp.task('copy-tests', function(){
             }
         }))
         .pipe(gulp.dest('build'));
-    
+
     // Test
     gulp.src("tests/**/**/*.js")
         .pipe(plumber())
@@ -212,8 +212,7 @@ gulp.task('copy-tests', function(){
 
 //Server
 gulp.task('servers', function (callback) {
-    var devApp, devServer, devAddress, devHost, url, 
-        log = gutil.log,
+    var log = gutil.log,
         colors = gutil.colors;
 
     log('');
@@ -222,36 +221,20 @@ gulp.task('servers', function (callback) {
     log(colors.gray("-----------------------------------"));
     log('');
 
-    devApp = connect().use(static('build'));
+    var SERVER_PORT = 8000;
+
+    //devApp = connect().use(static('build'));
     // console.log(devApp);
 
-    var expressServer = require('./api-stub/routes.js');
-        expressServer(log, colors);
+    var apiServer = require('./api-stub/routes.js');
+        apiServer(log, colors);
 
-    // change port and hostname to something static if you prefer
-    devServer = http.createServer(devApp).listen(8000 /*, hostname*/ );
-
-    devServer.on('error', function (error) {
-        log(colors.underline(colors.red('ERROR')) + ' Unable to start server!');
-        callback(error); // we couldn't start the server, so report it and quit gulp
-    });
-
-    devServer.on('listening', function () {
-        devAddress = devServer.address();
-        devHost = devAddress.address === '0.0.0.0' ? 'localhost' : devAddress.address;
-        url = 'http://' + devHost + ':' + devAddress.port + '/';
-
-        log('');
-        log('Started dev server at ' + colors.magenta(url));
-        if (gutil.env.open) {
-            log('Opening dev server URL in browser');
-            open(url);
-        } else {
-            log(colors.gray('(Run with --open to automatically open URL on startup)'));
-        }
-        log('');
-        callback(); // we're done with this task for now
-    });
+    var webServer = require('./api-stub/server.js');
+        webServer({
+          port: SERVER_PORT, //set server port
+          log: log,
+          colors: colors
+        });
 });
 
 //gulp watch

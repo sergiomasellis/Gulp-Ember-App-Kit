@@ -94,6 +94,11 @@ body {
 	left: -5%;
 }
 
+.menu ul li a{
+  text-decoration: none;
+  color: #ffffff;
+}
+
 .menu ul li:hover{
 	position: relative;
 	left: 0%;
