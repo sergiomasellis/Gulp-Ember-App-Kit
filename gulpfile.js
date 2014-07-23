@@ -31,7 +31,7 @@ var log = gutil.log,
     colors = gutil.colors;
 
 // production env options: "dev" "test" "prod"
-process.env.NODE_ENV = "dev";
+process.env.NODE_ENV = "test";
 
 // Clean old files in the build folder
 gulp.task('clean', function () {
