@@ -31,9 +31,14 @@ var gulp = require('gulp'),
 var log = gutil.log,
     colors = gutil.colors;
 
+<<<<<<< HEAD
 // Build env options: "dev" "test" "prod"
     config = config("test");
 
+=======
+// production env options: "dev" "test" "prod"
+process.env.NODE_ENV = "test";
+>>>>>>> FETCH_HEAD
 
 // Clean old files in the build folder
 gulp.task('clean', function () {
