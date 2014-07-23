@@ -7,12 +7,12 @@
 */
 // Required Plugins
 var gulp = require('gulp'),
-    uglify = require('gulp-uglify'),
     handlebars = require('gulp-handlebars'),
     jshint = require('gulp-jshint'),
     es6ModuleTranspiler = require("gulp-es6-module-transpiler"),
+    sourceMaps = require('gulp-sourcemaps'),
     concat = require('gulp-concat'),
-    clean = require('gulp-clean'),
+    clean = require('gulp-rimraf'),
     refresh = require('gulp-livereload'),
     plumber = require('gulp-plumber'),
     gutil = require("gulp-util"),
@@ -25,13 +25,15 @@ var gulp = require('gulp'),
     connect = require("connect"),
     open = require("open"),
     fs = require('fs'),
-    path = require('path');
+    path = require('path'),
+    config = require('./config/environment.js');
 
 var log = gutil.log,
     colors = gutil.colors;
 
-// production env options: "dev" "test" "prod"
-process.env.NODE_ENV = "dev";
+// Build env options: "dev" "test" "prod"
+    config = config("test");
+
 
 // Clean old files in the build folder
 gulp.task('clean', function () {
@@ -63,10 +65,11 @@ gulp.task('scripts', function () {
         .pipe(plumber())
         .pipe(es6ModuleTranspiler({
             type: "amd",
-            namespace: "appkit"
+            namespace: config.namespace
         }))
-        .pipe(uglify())
+        .pipe(sourceMaps.init())
         .pipe(concat('app.js'))
+        .pipe(sourceMaps.write())
         .pipe(gulp.dest("build/assets/js"))
         .pipe(refresh(server));
 });
@@ -84,7 +87,7 @@ gulp.task('templates', function () {
         .pipe(plumber())
         .pipe(handlebars({
             outputType: "amd",
-            namespace: "appkit"
+            namespace: config.namespace
         }))
         .pipe(concat('templates.js'))
         .pipe(gulp.dest('build/assets/js'))
@@ -200,7 +203,9 @@ gulp.task('copy-tests', function(){
         .pipe(plumber())
         .pipe(es6ModuleTranspiler({
             type: "amd",
-            namespace: "appkit/tests"
+            namespace: function(){
+              return config.namespace+"/tests";
+            }
         }))
         .pipe(concat('tests.js'))
         .pipe(gulp.dest("build/tests/"));

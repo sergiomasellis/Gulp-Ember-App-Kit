@@ -1,5 +1,6 @@
 module.exports = function(environment) {
   var ENV = {
+    namespace: "appkit",
     baseURL: '/',
     locationType: 'auto',
     FEATURES: {
@@ -23,11 +24,16 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     ENV.APP.LOG_VIEW_LOOKUPS = true;
+
+
   }
 
   if (environment === 'prod') {
 
   }
+
+  //set build environment
+  process.env.NODE_ENV = environment;
 
   return ENV;
 };

@@ -15,7 +15,7 @@ Ember App Kit using Gulp (based off EAK and Ember-cli)
 - Type `npm install` or `sudo npm install` (depends on your setup)
 - Next lets install our bower dependencies using `bower install`
 - If everything was setup correctly you can now run `gulp`
-- Finally go to "http://localhost:8000/"
+- Finally go to `http://localhost:8000/`
 
 ## Config
 - For basic changes to your app environment go to `config/environments.js`
@@ -24,7 +24,7 @@ Ember App Kit using Gulp (based off EAK and Ember-cli)
 - `gulp` This is the default task it "transpiles" your ember app then serves it from the `./build/` dirrectory. It even starts a live reload server to make it easy to get started.
 - `gulp clean` Some times you just want a fresh start this deletes the build folder.
 - `gulp build` This task will build your project and place it in the build directory.
-- `gulp testem` This is a little command to run the testem ci module. The test can be configured on the `testem.json` file. 
+- `gulp testem` This is a little command to run the testem ci module. The test can be configured on the `testem.json` file.
 - `gulp converage` Test converage using [istanbul](https://github.com/gotwarlost/istanbul) and testem. Setup with Qunit.
 
 ## API Stub
