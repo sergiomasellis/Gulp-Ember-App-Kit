@@ -52,6 +52,5 @@
     "xtend": "^3.0.0"
   },
   "devDependencies": {
-    "serve-static": "^1.2.3"
   }
 }
