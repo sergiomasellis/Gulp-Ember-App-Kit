@@ -203,7 +203,7 @@ gulp.task('copy-tests', function(){
             type: "amd",
             namespace: function(){
               return config.namespace+"/tests";
-            }
+            }()
         }))
         .pipe(concat('tests.js'))
         .pipe(gulp.dest("build/tests/"));
