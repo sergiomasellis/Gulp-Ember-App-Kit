@@ -1,7 +1,7 @@
 /*
   Author: Sergio Masellis
   Company: ""
-  Version: 0.0.1
+  Version: 0.0.2
   Description: Enables use of Ember App Kit with Gulp streaming builder
   Find plugins at https://npmjs.org/browse/keyword/gulpplugin
 */
@@ -12,7 +12,7 @@ var gulp = require('gulp'),
     es6ModuleTranspiler = require("gulp-es6-module-transpiler"),
     sourceMaps = require('gulp-sourcemaps'),
     concat = require('gulp-concat'),
-    clean = require('gulp-rimraf'),
+    clean = require('del'),
     refresh = require('gulp-livereload'),
     plumber = require('gulp-plumber'),
     gutil = require("gulp-util"),
@@ -31,7 +31,7 @@ var log = gutil.log,
     colors = gutil.colors;
 
 // Build env options: "dev" "test" "prod"
-    config = config("test");
+    config = config("dev");
 
 // Clean old files in the build folder
 gulp.task('clean', function () {

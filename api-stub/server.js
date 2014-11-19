@@ -16,7 +16,7 @@ module.exports = function (opts) {
   app.engine('html', require('ejs').renderFile);
   app.set('view engine', 'html');
   app.use(morgan('dev'));
-  app.use(bodyParser.urlencoded());
+  app.use(bodyParser.urlencoded({ extended: true }));
   app.use(methodOverride());
   app.use(express.static(path.join(process.cwd(), 'build')));
   app.use(express.static(path.join(process.cwd(), 'public')));
