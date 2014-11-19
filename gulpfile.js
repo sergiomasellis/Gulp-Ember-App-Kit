@@ -12,7 +12,7 @@ var gulp = require('gulp'),
     es6ModuleTranspiler = require("gulp-es6-module-transpiler"),
     sourceMaps = require('gulp-sourcemaps'),
     concat = require('gulp-concat'),
-    clean = require('del'),
+    del = require('del'),
     refresh = require('gulp-livereload'),
     plumber = require('gulp-plumber'),
     gutil = require("gulp-util"),
@@ -25,16 +25,30 @@ var gulp = require('gulp'),
     open = require("open"),
     fs = require('fs'),
     path = require('path'),
+    argv = require('yargs').argv,
     config = require('./config/environment.js');
 
 var log = gutil.log,
-    colors = gutil.colors;
+    colors = gutil.colors,
+    env = "dev";
 
 // Build env options: "dev" "test" "prod"
-    config = config("dev");
+if (argv.ENV === "test") {
+    env = "test";
+} else {
+   env = "dev";
+}
+
+config = config(env);
+
+    log('');
+    log(colors.gray("-----------------------------------"));
+    log("Build for: " + colors.green(env));
+    log(colors.gray("-----------------------------------"));
+    log('');
 
 // Clean old files in the build folder
-gulp.task('clean', function () {
+gulp.task('clean', function (cb) {
 
     log('');
     log(colors.gray("-----------------------------------"));
@@ -42,12 +56,13 @@ gulp.task('clean', function () {
     log(colors.gray("-----------------------------------"));
     log('');
 
-   return gulp.src(['build', 'coverage', 'coverage.json'], {
-            read: false
-        })
-        .pipe(clean({
-            force: true
-        }));
+  del([
+    'build',
+    // here we use a globbing pattern to match everything inside the `mobile` folder
+    'coverage',
+    // we don't want to clean this file though so we negate the pattern
+    'coverage.json'
+  ], cb);
 });
 
 // Load Script files es6 modules
@@ -59,7 +74,7 @@ gulp.task('scripts', function () {
     log(colors.gray("-----------------------------------"));
     log('');
 
-    gulp.src("app/**/**/*.js")
+    gulp.src(["app/**/**/*.js", "config/*.js"])
         .pipe(plumber())
         .pipe(es6ModuleTranspiler({
             type: "amd",
@@ -179,7 +194,10 @@ gulp.task('testem', ['build', 'copy-tests'], function () {
     return fs.readFile(file, 'utf8', function (err, data) {
 
         data = JSON.parse(data);
+
         var api = new testem();
+
+        // console.log(api, data);
         return api.startCI(data);
 
         // console.dir(data);
