@@ -25,7 +25,7 @@ Ember App Kit using Gulp (based off EAK and Ember-cli)
 - `gulp clean` Some times you just want a fresh start this deletes the build folder.
 - `gulp build` This task will build your project and place it in the build directory.
 - `gulp testem` This is a little command to run the testem ci module. The test can be configured on the `testem.json` file.
-- `gulp converage` Test converage using [istanbul](https://github.com/gotwarlost/istanbul) and testem. Setup with Qunit.
+- `gulp coverage` Test coverage using [istanbul](https://github.com/gotwarlost/istanbul) and testem. Setup with Qunit.
 
 ## API Stub
 A small [express](http://expressjs.com/4x/api.html) stub server is included for you to use this server is run on port 3000.
